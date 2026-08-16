@@ -70,16 +70,15 @@
 
   main {
     flex: 1;
-    display: flex;
-    align-items: center;
     max-width: 1100px;
     width: 100%;
     margin: 0 auto;
-    padding: 40px 32px 60px;
+    padding: 40px 32px 20px;
   }
 
   .hero {
     width: 100%;
+    padding-bottom: 20px;
   }
 
   .eyebrow {
@@ -118,8 +117,6 @@
     margin: 0 0 44px;
   }
 
-  /* signature element: a "payday pulse" line — a cycle that resolves into a calm flat line,
-     echoing the product's core idea (income → spend-down → reset) without naming the product. */
   .pulse {
     width: 100%;
     max-width: 560px;
@@ -182,6 +179,36 @@
     outline-offset: 4px;
   }
 
+  section.block {
+    padding: 56px 0;
+    border-top: 1px solid var(--paper-line);
+  }
+
+  section.block h2 {
+    font-family: "Outfit", sans-serif;
+    font-weight: 600;
+    font-size: clamp(22px, 3vw, 28px);
+    letter-spacing: -0.01em;
+    margin: 0 0 18px;
+    max-width: 24ch;
+  }
+
+  section.block p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    max-width: 60ch;
+    margin: 0;
+  }
+
+  section.block p + p {
+    margin-top: 14px;
+  }
+
+  .contact-block .contact {
+    margin-top: 20px;
+  }
+
   footer {
     max-width: 1100px;
     width: 100%;
@@ -192,13 +219,29 @@
     flex-wrap: wrap;
     gap: 8px 20px;
     justify-content: space-between;
+    align-items: center;
     font-size: 13px;
     color: var(--ink-soft);
   }
 
+  footer nav {
+    display: flex;
+    gap: 18px;
+  }
+
+  footer nav a {
+    color: var(--ink-soft);
+    text-decoration: none;
+  }
+
+  footer nav a:hover,
+  footer nav a:focus-visible {
+    color: var(--teal-deep);
+  }
+
   @media (max-width: 560px) {
     header, main, footer { padding-left: 20px; padding-right: 20px; }
-    footer { flex-direction: column; }
+    footer { flex-direction: column; align-items: flex-start; }
   }
 </style>
 </head>
@@ -225,13 +268,46 @@
           <path d="M0,44 L60,44 L80,10 L100,56 L120,44 L180,44 C 220,44 220,32 260,32 C 300,32 300,32 560,32" />
           <circle cx="260" cy="32" r="5" />
         </svg>
-
-        <a class="contact" href="mailto:hello@threshlabs.com">hello@threshlabs.com</a>
       </div>
+
+      <section class="block about-block">
+        <h2>Built for the days between paychecks.</h2>
+        <p>
+          Thresh Labs LLC is a Missouri-based software company. We build tools that help
+          people answer one of the most stressful everyday questions in personal finance:
+          how much can I actually spend right now?
+        </p>
+        <p>
+          We believe good financial software should feel like a calm, honest friend &mdash;
+          not a spreadsheet, and not a lecture.
+        </p>
+      </section>
+
+      <section class="block product-block">
+        <h2>One idea, several products.</h2>
+        <p>
+          Our first product focuses on paycheck-to-paycheck budgeting. It's the foundation
+          for a small family of tools we're building around the same principle: clarity
+          over complexity, and confidence over anxiety. More on the way in 2027.
+        </p>
+      </section>
+
+      <section class="block contact-block">
+        <h2>Get in touch.</h2>
+        <p>
+          Questions about Thresh Labs, our products, or press? We're a small team building
+          deliberately &mdash; expect a real reply, not a form letter.
+        </p>
+        <a class="contact" href="mailto:hello@threshlabs.com">hello@threshlabs.com</a>
+      </section>
     </main>
 
     <footer>
       <span>&copy; 2026 Thresh Labs LLC. A Missouri limited liability company.</span>
+      <nav>
+        <a href="/privacy">Privacy Policy</a>
+        <a href="/terms">Terms of Service</a>
+      </nav>
       <span>Software &amp; technology company.</span>
     </footer>
   </div>

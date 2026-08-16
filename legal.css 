@@ -1,0 +1,97 @@
+/* Thresh Labs — legal page styles
+   Minimal, matches the landing page: off-white bg, dark ink, teal accent.
+   Merge into your existing stylesheet or include separately. */
+
+.legal-page {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 4rem;
+  color: #1a1a1a;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  line-height: 1.65;
+}
+
+.legal-header {
+  margin-bottom: 3.5rem;
+}
+
+.legal-home {
+  font-weight: 700;
+  font-size: 1rem;
+  color: #1a1a1a;
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+
+.legal-home:hover {
+  color: #0d9488;
+}
+
+.legal-body h1 {
+  font-size: 2.25rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin: 0 0 0.5rem;
+}
+
+.legal-updated {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin: 0 0 2.5rem;
+}
+
+.legal-body h2 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 2.5rem 0 0.75rem;
+}
+
+.legal-body p {
+  margin: 0 0 1.125rem;
+  color: #374151;
+}
+
+.legal-body a {
+  color: #0d9488;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.legal-entity {
+  margin-top: 2rem;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.legal-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 4rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e5e7eb;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.legal-footer nav {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.legal-footer a {
+  color: #6b7280;
+  text-decoration: none;
+}
+
+.legal-footer a:hover {
+  color: #0d9488;
+}
+
+@media (max-width: 640px) {
+  .legal-body h1 { font-size: 1.75rem; }
+  .legal-page { padding: 2rem 1.25rem 3rem; }
+}

@@ -1,0 +1,71 @@
+<!-- Thresh Labs LLC — Privacy Policy (PLACEHOLDER)
+     Interim page. Replace with the full policy before beta invites and app store submission.
+     Styling assumes the same base stylesheet as the threshlabs.com landing page. -->
+
+<main class="legal-page">
+  <header class="legal-header">
+    <a class="legal-home" href="/">&#9670; Thresh Labs</a>
+  </header>
+
+  <article class="legal-body">
+    <h1>Privacy Policy</h1>
+    <p class="legal-updated">Last updated: August 16, 2026</p>
+
+    <p>
+      Thresh Labs LLC is a Missouri limited liability company that designs and builds
+      consumer software. This page describes, in general terms, how we approach privacy
+      across our website and our products.
+    </p>
+
+    <h2>Our approach</h2>
+    <p>
+      We build financial software, which means we take data handling seriously. Our
+      products are designed so that the people using them stay in control of their own
+      information. We do not sell personal information, and we do not share it with third
+      parties for advertising purposes.
+    </p>
+
+    <h2>This website</h2>
+    <p>
+      This site is a company information page. We do not require an account to view it and
+      we do not collect personal information from visitors beyond standard, aggregate server
+      and traffic data used to keep the site running and understand general usage.
+    </p>
+    <p>
+      If you email us, we receive the contents of your message and your email address so we
+      can reply. We use that information for correspondence only.
+    </p>
+
+    <h2>Our products</h2>
+    <p>
+      Our software products are in active development and are not yet generally available.
+      A complete, product-specific privacy policy &mdash; covering the categories of data
+      collected, how it is stored, any third-party processing, retention periods, and how to
+      request deletion &mdash; will be published here before any product is made available
+      to the public, and will be presented to users at signup.
+    </p>
+
+    <h2>Changes to this policy</h2>
+    <p>
+      We will update this page as our products develop. The &ldquo;last updated&rdquo; date
+      above reflects the most recent revision.
+    </p>
+
+    <h2>Contact</h2>
+    <p>
+      Questions about this policy can be sent to
+      <a href="mailto:legal@threshlabs.com">legal@threshlabs.com</a>.
+    </p>
+    <p class="legal-entity">
+      Thresh Labs LLC &middot; Missouri, United States
+    </p>
+  </article>
+
+  <footer class="legal-footer">
+    <span>&copy; 2026 Thresh Labs LLC. A Missouri limited liability company.</span>
+    <nav>
+      <a href="/privacy">Privacy Policy</a>
+      <a href="/terms">Terms of Service</a>
+    </nav>
+  </footer>
+</main>
