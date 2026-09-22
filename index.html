@@ -1,315 +1,430 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Thresh Labs — Software for calmer paydays</title>
-<meta name="description" content="Thresh Labs LLC builds software that takes the guesswork out of everyday money decisions." />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Thresh Labs — independent software company</title>
+<meta name="description" content="Thresh Labs is an independent software company in Missouri building tools for people who get paid on a cycle." />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<meta name="theme-color" content="#0F1B1A" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <style>
   :root {
+    /* Mirrors the landing tokens in strideBudget-APP/src/index.css so the two
+       properties read as one company. Coral is deliberately absent — in-app only. */
+    --ink: #0F1B1A;
+    --surface: #16211F;
+    --surface-2: #1B2725;
+    --paper: #F6F4EE;
     --teal: #0D9488;
-    --teal-deep: #0B7A70;
-    --coral: #FF6B6B;
-    --ink: #0F172A;
-    --ink-soft: #475569;
-    --paper: #FAFAF9;
-    --paper-line: #E7E5E4;
+    --amber: #F59E0B;
+    --line: rgba(246, 244, 238, 0.11);
+    --line-strong: rgba(246, 244, 238, 0.2);
+
+    --display: "Fraunces", Georgia, serif;
+    --body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
   }
 
-  * { box-sizing: border-box; }
+  *, *::before, *::after { box-sizing: inherit; }
 
-  html, body {
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); -webkit-text-size-adjust: 100%; }
+
+  body {
     margin: 0;
-    padding: 0;
-    background: var(--paper);
-    color: var(--ink);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--ink);
+    color: var(--paper);
+    font-family: var(--body);
+    font-size: 17px;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
   }
 
-  @font-face {
-    font-family: "Outfit";
-    src: local("Outfit");
-  }
+  img, svg { max-width: 100%; }
 
-  .wrap {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-
-  header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 28px 32px;
-    max-width: 1100px;
-    width: 100%;
-    margin: 0 auto;
-  }
-
-  .mark {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-family: "Outfit", sans-serif;
-    font-weight: 600;
-    font-size: 18px;
-    letter-spacing: -0.01em;
-    color: var(--ink);
-  }
-
-  .mark-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 3px;
-    background: var(--teal);
-    transform: rotate(45deg);
-    flex-shrink: 0;
-  }
-
-  main {
-    flex: 1;
-    max-width: 1100px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 40px 32px 20px;
-  }
-
-  .hero {
-    width: 100%;
-    padding-bottom: 20px;
-  }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
 
   .eyebrow {
-    display: inline-block;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.06em;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--teal-deep);
-    background: rgba(13, 148, 136, 0.09);
-    padding: 6px 12px;
-    border-radius: 100px;
-    margin-bottom: 28px;
+    color: rgba(246, 244, 238, 0.45);
   }
 
-  h1 {
-    font-family: "Outfit", sans-serif;
-    font-weight: 600;
-    font-size: clamp(36px, 6vw, 64px);
-    line-height: 1.05;
-    letter-spacing: -0.02em;
-    margin: 0 0 22px;
-    max-width: 15ch;
-  }
-
-  h1 em {
-    font-style: normal;
-    color: var(--teal);
-  }
-
-  .sub {
-    font-size: clamp(17px, 2vw, 20px);
-    line-height: 1.55;
-    color: var(--ink-soft);
-    max-width: 46ch;
-    margin: 0 0 44px;
-  }
-
-  .pulse {
-    width: 100%;
-    max-width: 560px;
-    height: 64px;
-    margin-bottom: 44px;
-  }
-
-  .pulse path {
-    fill: none;
-    stroke: var(--teal);
-    stroke-width: 2.5;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-dasharray: 600;
-    stroke-dashoffset: 600;
-    animation: draw 2.4s ease-out forwards 0.3s;
-  }
-
-  .pulse circle {
-    fill: var(--coral);
-    opacity: 0;
-    animation: pop 0.4s ease-out forwards 2.4s;
-  }
-
-  @keyframes draw {
-    to { stroke-dashoffset: 0; }
-  }
-
-  @keyframes pop {
-    from { opacity: 0; transform: scale(0.4); }
-    to { opacity: 1; transform: scale(1); }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .pulse path { animation: none; stroke-dashoffset: 0; }
-    .pulse circle { animation: none; opacity: 1; }
-  }
-
-  .contact {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--ink);
-    text-decoration: none;
-    border-bottom: 2px solid var(--teal);
-    padding-bottom: 2px;
-    transition: color 0.15s ease, border-color 0.15s ease;
-  }
-
-  .contact:hover,
-  .contact:focus-visible {
-    color: var(--teal-deep);
-    border-color: var(--coral);
-  }
-
-  .contact:focus-visible {
-    outline: 2px solid var(--teal);
-    outline-offset: 4px;
-  }
-
-  section.block {
-    padding: 56px 0;
-    border-top: 1px solid var(--paper-line);
-  }
-
-  section.block h2 {
-    font-family: "Outfit", sans-serif;
-    font-weight: 600;
-    font-size: clamp(22px, 3vw, 28px);
+  /* ---------- masthead ---------- */
+  .masthead { padding: 32px 0 0; }
+  .mark-lockup { display: flex; align-items: center; gap: 12px; }
+  .mark-lockup span {
+    font-size: 20px;
+    font-weight: 500;
     letter-spacing: -0.01em;
-    margin: 0 0 18px;
-    max-width: 24ch;
   }
 
-  section.block p {
-    font-size: 16px;
-    line-height: 1.7;
-    color: var(--ink-soft);
-    max-width: 60ch;
+  /* ---------- hero ---------- */
+  .hero { padding: 80px 0 72px; }
+  .hero h1 {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(34px, 6.4vw, 52px);
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    margin: 18px 0 20px;
+    max-width: 17ch;
+  }
+  .hero h1 .accent { color: var(--teal); }
+  .hero p {
+    font-size: 18px;
+    line-height: 1.65;
+    color: rgba(246, 244, 238, 0.78);
+    max-width: 54ch;
     margin: 0;
   }
 
-  section.block p + p {
-    margin-top: 14px;
+  /* ---------- section framing ---------- */
+  .section { padding: 64px 0; border-top: 1px solid var(--line); }
+  .section-head { display: flex; flex-direction: column; gap: 10px; margin-bottom: 40px; }
+  .section-head h2 {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(25px, 4vw, 32px);
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+  .section-head p {
+    margin: 0;
+    color: rgba(246, 244, 238, 0.68);
+    max-width: 56ch;
   }
 
-  .contact-block .contact {
-    margin-top: 20px;
+  /* ---------- product slots ---------- */
+  .slots { display: flex; flex-direction: column; gap: 20px; }
+
+  .slot {
+    display: grid;
+    grid-template-columns: 112px 1fr;
+    gap: 28px;
+    align-items: start;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 28px;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 160ms ease, background-color 160ms ease, transform 160ms ease;
   }
 
-  footer {
-    max-width: 1100px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 24px 32px 32px;
-    border-top: 1px solid var(--paper-line);
+  a.slot:hover, a.slot:focus-visible {
+    border-color: rgba(13, 148, 136, 0.55);
+    background: var(--surface-2);
+    transform: translateY(-2px);
+  }
+  a.slot:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
+
+  .tile {
+    width: 112px;
+    height: 112px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(13, 148, 136, 0.1);
+    border: 1px solid rgba(13, 148, 136, 0.28);
+  }
+
+  .tile-empty {
+    background: transparent;
+    border: 1px dashed var(--line-strong);
+    position: relative;
+    overflow: hidden;
+  }
+  /* Faint diagonal hatching = a slot framed out but not filled. */
+  .tile-empty::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(
+      45deg,
+      rgba(246, 244, 238, 0.06) 0px,
+      rgba(246, 244, 238, 0.06) 1px,
+      transparent 1px,
+      transparent 9px
+    );
+  }
+  .tile-empty span {
+    position: relative;
+    font-family: var(--mono);
+    font-size: 26px;
+    color: rgba(246, 244, 238, 0.3);
+  }
+
+  .slot-index {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: rgba(246, 244, 238, 0.35);
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .slot-name {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 23px;
+    letter-spacing: -0.01em;
+    margin: 0 0 12px;
+    line-height: 1.2;
+  }
+  .slot-name sup { font-size: 0.48em; font-weight: 400; opacity: 0.65; vertical-align: super; margin-left: 2px; }
+
+  .slot-body { margin: 0; color: rgba(246, 244, 238, 0.72); font-size: 16px; max-width: 52ch; }
+
+  .slot-foot {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px 20px;
+    align-items: center;
+    gap: 14px;
+    margin-top: 18px;
+  }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 5px 11px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    color: rgba(246, 244, 238, 0.7);
+  }
+  .pill::before {
+    content: "";
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--teal);
+  }
+  .pill-building::before {
+    background: var(--amber);
+    animation: pulse 2.6s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.35; transform: scale(0.8); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pill-building::before { animation: none; }
+    a.slot:hover { transform: none; }
+  }
+
+  .go {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--teal);
+  }
+  a.slot:hover .go { text-decoration: underline; text-underline-offset: 3px; }
+
+  /* Skeleton copy for the unfilled slot — reads as "drafted, not written". */
+  .skeleton { display: flex; flex-direction: column; gap: 9px; margin: 4px 0 0; }
+  .skeleton i {
+    display: block;
+    height: 9px;
+    border-radius: 999px;
+    background: rgba(246, 244, 238, 0.07);
+  }
+  .skeleton i:nth-child(1) { width: 92%; }
+  .skeleton i:nth-child(2) { width: 78%; }
+  .skeleton i:nth-child(3) { width: 45%; }
+
+  .slot-note {
+    margin: 16px 0 0;
+    font-size: 15px;
+    color: rgba(246, 244, 238, 0.5);
+    max-width: 48ch;
+  }
+
+  /* ---------- about ---------- */
+  .prose p { color: rgba(246, 244, 238, 0.78); max-width: 60ch; }
+  .prose p + p { margin-top: 18px; }
+
+  /* ---------- contact ---------- */
+  .contact-link {
+    font-family: var(--mono);
+    font-size: clamp(17px, 3vw, 21px);
+    color: var(--paper);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(13, 148, 136, 0.7);
+    padding-bottom: 3px;
+  }
+  .contact-link:hover { color: var(--teal); }
+
+  /* ---------- footer ---------- */
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 34px 0 48px;
+    font-size: 13px;
+    color: rgba(246, 244, 238, 0.45);
+  }
+  .footer-row {
+    display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    font-size: 13px;
-    color: var(--ink-soft);
+    gap: 16px;
   }
+  .footer-links { display: flex; gap: 18px; }
+  .footer-links a { color: inherit; text-decoration: none; }
+  .footer-links a:hover { color: var(--paper); }
+  .footer-addr { margin: 14px 0 0; font-style: normal; }
 
-  footer nav {
-    display: flex;
-    gap: 18px;
-  }
-
-  footer nav a {
-    color: var(--ink-soft);
-    text-decoration: none;
-  }
-
-  footer nav a:hover,
-  footer nav a:focus-visible {
-    color: var(--teal-deep);
-  }
-
-  @media (max-width: 560px) {
-    header, main, footer { padding-left: 20px; padding-right: 20px; }
-    footer { flex-direction: column; align-items: flex-start; }
+  @media (max-width: 640px) {
+    .slot { grid-template-columns: 1fr; gap: 20px; padding: 24px; }
+    .tile, .tile-empty { width: 84px; height: 84px; }
+    .hero { padding: 56px 0 48px; }
+    .section { padding: 52px 0; }
   }
 </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <div class="mark">
-        <span class="mark-dot" aria-hidden="true"></span>
-        Thresh Labs
-      </div>
-    </header>
 
-    <main>
-      <div class="hero">
-        <span class="eyebrow">Building in Missouri</span>
-        <h1>Software for <em>calmer</em> paydays.</h1>
-        <p class="sub">
-          Thresh Labs LLC designs and builds consumer software that turns everyday
-          money questions into clear, confident answers &mdash; starting with knowing
-          exactly what's safe to spend before your next paycheck lands.
-        </p>
-
-        <svg class="pulse" viewBox="0 0 560 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A wavering line that settles into a steady, calm line">
-          <path d="M0,44 L60,44 L80,10 L100,56 L120,44 L180,44 C 220,44 220,32 260,32 C 300,32 300,32 560,32" />
-          <circle cx="260" cy="32" r="5" />
-        </svg>
-      </div>
-
-      <section class="block about-block">
-        <h2>Built for the days between paychecks.</h2>
-        <p>
-          Thresh Labs LLC is a Missouri-based software company. We build tools that help
-          people answer one of the most stressful everyday questions in personal finance:
-          how much can I actually spend right now?
-        </p>
-        <p>
-          We believe good financial software should feel like a calm, honest friend &mdash;
-          not a spreadsheet, and not a lecture.
-        </p>
-      </section>
-
-      <section class="block product-block">
-        <h2>One idea, several products.</h2>
-        <p>
-          Our first product focuses on paycheck-to-paycheck budgeting. It's the foundation
-          for a small family of tools we're building around the same principle: clarity
-          over complexity, and confidence over anxiety. More on the way in 2027.
-        </p>
-      </section>
-
-      <section class="block contact-block">
-        <h2>Get in touch.</h2>
-        <p>
-          Questions about Thresh Labs, our products, or press? We're a small team building
-          deliberately &mdash; expect a real reply, not a form letter.
-        </p>
-        <a class="contact" href="mailto:hello@threshlabs.com">hello@threshlabs.com</a>
-      </section>
-    </main>
-
-    <footer>
-      <span>&copy; 2026 Thresh Labs LLC. A Missouri limited liability company.</span>
-      <nav>
-        <a href="/privacy.html">Privacy Policy</a>
-        <a href="/terms.html">Terms of Service</a>
-      </nav>
-      <span>Software &amp; technology company.</span>
-    </footer>
+  <div class="wrap masthead">
+    <div class="mark-lockup">
+      <!-- Thresh Labs mark: the Gate. Bone dot is the dark-background variant;
+           it inverts to ink (#0F1B1A) on light surfaces. -->
+      <svg width="34" height="34" viewBox="0 0 380 380" role="img" aria-label="Thresh Labs">
+        <line x1="105" y1="70" x2="105" y2="310" stroke="#0D9488" stroke-width="40" stroke-linecap="round"/>
+        <line x1="275" y1="120" x2="275" y2="310" stroke="#0D9488" stroke-width="40" stroke-linecap="round"/>
+        <circle cx="190" cy="175" r="38" fill="#F6F4EE"/>
+      </svg>
+      <span>Thresh Labs</span>
+    </div>
   </div>
+
+  <header class="wrap hero">
+    <p class="eyebrow">Independent software company &middot; Saint Louis, Missouri</p>
+    <h1>Software for <span class="accent">calmer</span> paydays.</h1>
+    <p>
+      Thresh Labs makes small, careful software for people who get paid on a cycle.
+      One question runs underneath everything we ship: between now and the next
+      payday, what is actually yours to spend? We answer it one product at a time.
+    </p>
+  </header>
+
+  <main>
+    <section class="wrap section" id="products">
+      <div class="section-head">
+        <p class="eyebrow">Products</p>
+        <h2>One idea, several products.</h2>
+        <p>Each one takes a piece of the same question. We release them as they're ready, not as they're announced.</p>
+      </div>
+
+      <div class="slots">
+
+        <!-- Slot 01 — shipped/shipping. Whole card is the link out to the product site.
+             Tile carries the product's own mark (step + amber dot), not the Labs mark. -->
+        <a class="slot" href="https://threshpaycheck.com" rel="noopener">
+          <div class="tile">
+            <svg width="62" height="62" viewBox="0 0 380 380" role="img" aria-label="Thresh Paycheck">
+              <polyline points="55,265 190,265 190,140 300,140" fill="none" stroke="#0D9488"
+                        stroke-width="40" stroke-linecap="round" stroke-linejoin="round" />
+              <circle cx="255" cy="74" r="46" fill="#F59E0B" />
+            </svg>
+          </div>
+          <div>
+            <span class="slot-index">01 &mdash; Flagship</span>
+            <h3 class="slot-name">Thresh Paycheck<sup>&trade;</sup></h3>
+            <p class="slot-body">
+              Our first product. It gives you one number &mdash; what you can safely spend
+              before your next paycheck &mdash; built from income you've actually been paid,
+              minus the bills, debts, and spending standing between now and payday.
+              It never connects to your bank.
+            </p>
+            <div class="slot-foot">
+              <span class="pill">Waitlist open</span>
+              <span class="go">threshpaycheck.com &rarr;</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Slot 02 — intentionally unnamed. Nothing goes public here until the
+             mark is cleared and the thing exists. Not a link. -->
+        <div class="slot" aria-label="Second product, in development">
+          <div class="tile tile-empty"><span>&#8212;</span></div>
+          <div>
+            <span class="slot-index">02 &mdash; Unannounced</span>
+            <div class="skeleton" aria-hidden="true">
+              <i></i><i></i><i></i>
+            </div>
+            <p class="slot-note">
+              The next one is being built. We'll name it when there's something
+              real to put behind the name.
+            </p>
+            <div class="slot-foot">
+              <span class="pill pill-building">In development</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="wrap section prose" id="about">
+      <div class="section-head">
+        <p class="eyebrow">About</p>
+        <h2>Built for the days between paychecks.</h2>
+      </div>
+      <p>
+        Thresh Labs LLC is a Missouri software company &mdash; not a financial
+        institution. We don't move money, hold money, or give financial advice.
+        Our products work from numbers you enter yourself, and those numbers
+        stay yours.
+      </p>
+      <p>
+        The work is deliberately slow. Money software earns trust by being right
+        every single time, so we'd rather ship one product that holds up than four
+        that mostly do.
+      </p>
+    </section>
+
+    <section class="wrap section" id="contact">
+      <div class="section-head">
+        <p class="eyebrow">Contact</p>
+        <h2>Get in touch.</h2>
+      </div>
+      <a class="contact-link" href="mailto:hello@threshlabs.com">hello@threshlabs.com</a>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-row">
+        <div class="mark-lockup" style="gap:10px;">
+          <svg width="18" height="18" viewBox="0 0 380 380" role="img" aria-label="">
+            <line x1="105" y1="70" x2="105" y2="310" stroke="#0D9488" stroke-width="40" stroke-linecap="round"/>
+            <line x1="275" y1="120" x2="275" y2="310" stroke="#0D9488" stroke-width="40" stroke-linecap="round"/>
+            <circle cx="190" cy="175" r="38" fill="#F6F4EE"/>
+          </svg>
+          <span style="font-size:13px;font-weight:400;">&copy; 2026 Thresh Labs LLC</span>
+        </div>
+        <div class="footer-links">
+          <a href="/terms">Terms</a>
+          <a href="/privacy">Privacy</a>
+        </div>
+      </div>
+      <address class="footer-addr">231 S Bemiston Ave Ste 850 PMB 897716, Saint Louis, MO 63105</address>
+    </div>
+  </footer>
+
 </body>
 </html>
