@@ -49,7 +49,12 @@
 
   img, svg { max-width: 100%; }
 
-  .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+  .wrap {
+    max-width: 880px;
+    margin: 0 auto;
+    padding-left: max(24px, env(safe-area-inset-left, 0px));
+    padding-right: max(24px, env(safe-area-inset-right, 0px));
+  }
 
   .eyebrow {
     font-family: var(--mono);
@@ -60,7 +65,7 @@
   }
 
   /* ---------- masthead ---------- */
-  .masthead { padding: 32px 0 0; }
+  .masthead { padding-top: 32px; }
   .mark-lockup { display: flex; align-items: center; gap: 12px; }
   .mark-lockup span {
     font-size: 20px;
@@ -69,7 +74,7 @@
   }
 
   /* ---------- hero ---------- */
-  .hero { padding: 80px 0 72px; }
+  .hero { padding-top: 80px; padding-bottom: 72px; }
   .hero h1 {
     font-family: var(--display);
     font-weight: 400;
@@ -89,7 +94,7 @@
   }
 
   /* ---------- section framing ---------- */
-  .section { padding: 64px 0; border-top: 1px solid var(--line); }
+  .section { padding-top: 64px; padding-bottom: 64px; border-top: 1px solid var(--line); }
   .section-head { display: flex; flex-direction: column; gap: 10px; margin-bottom: 40px; }
   .section-head h2 {
     font-family: var(--display);
@@ -289,10 +294,36 @@
   .footer-addr { margin: 14px 0 0; font-style: normal; }
 
   @media (max-width: 640px) {
-    .slot { grid-template-columns: 1fr; gap: 20px; padding: 24px; }
-    .tile, .tile-empty { width: 84px; height: 84px; }
-    .hero { padding: 56px 0 48px; }
-    .section { padding: 52px 0; }
+    .hero { padding-top: 48px; padding-bottom: 44px; }
+    .section { padding-top: 48px; padding-bottom: 48px; }
+    .section-head { margin-bottom: 28px; }
+    .hero p { font-size: 17px; }
+
+    .eyebrow-sep { display: none; }
+    .eyebrow-loc { display: block; margin-top: 4px; }
+
+    /* Card becomes: [icon | index + name] on top, description full width below.
+       display:contents lets the text column's children join the card's grid. */
+    .slot {
+      grid-template-columns: 64px 1fr;
+      column-gap: 16px;
+      row-gap: 0;
+      padding: 20px;
+      align-items: center;
+    }
+    .slot > div:not(.tile) { display: contents; }
+    .tile, .tile-empty {
+      width: 64px; height: 64px;
+      border-radius: 10px;
+      grid-column: 1; grid-row: 1 / span 2;
+    }
+    .tile svg { width: 38px; height: 38px; }
+    .tile-empty span { font-size: 20px; }
+    .slot-index { grid-column: 2; grid-row: 1; align-self: end; margin-bottom: 2px; }
+    .slot-index.solo { grid-row: 1 / span 2; align-self: center; margin: 0; }
+    .slot-name { grid-column: 2; grid-row: 2; align-self: start; margin: 0; font-size: 21px; }
+    .slot-body, .skeleton, .slot-note, .slot-foot { grid-column: 1 / -1; }
+    .slot-body, .skeleton { margin-top: 16px; }
   }
 </style>
 </head>
@@ -312,7 +343,7 @@
   </div>
 
   <header class="wrap hero">
-    <p class="eyebrow">Independent software company &middot; Saint Louis, Missouri</p>
+    <p class="eyebrow"><span>Independent software company</span><span class="eyebrow-sep" aria-hidden="true"> &middot; </span><span class="eyebrow-loc">Saint Louis, Missouri</span></p>
     <h1>Software for <span class="accent">calmer</span> paydays.</h1>
     <p>
       Thresh Labs makes small, careful software for people who get paid on a cycle.
@@ -331,9 +362,13 @@
 
       <div class="slots">
 
-        <!-- Slot 01 — shipped/shipping. Whole card is the link out to the product site.
+        <!-- Slot 01 — flagship. Whole card is one link.
+             LINK TARGET: the Thresh Paycheck landing page, whose hero holds the
+             waitlist form. When the app goes public, change this href to the app
+             URL AND update the pill ("Waitlist open") and .go text below to match.
              Tile carries the product's own mark (step + amber dot), not the Labs mark. -->
-        <a class="slot" href="https://threshpaycheck.com" rel="noopener">
+        <a class="slot" href="https://threshpaycheck.com" rel="noopener"
+           aria-label="Thresh Paycheck — join the waitlist">
           <div class="tile">
             <svg width="62" height="62" viewBox="0 0 380 380" role="img" aria-label="Thresh Paycheck">
               <polyline points="55,265 190,265 190,140 300,140" fill="none" stroke="#0D9488"
@@ -352,7 +387,7 @@
             </p>
             <div class="slot-foot">
               <span class="pill">Waitlist open</span>
-              <span class="go">threshpaycheck.com &rarr;</span>
+              <span class="go">Join the waitlist &rarr;</span>
             </div>
           </div>
         </a>
@@ -362,7 +397,7 @@
         <div class="slot" aria-label="Second product, in development">
           <div class="tile tile-empty"><span>&#8212;</span></div>
           <div>
-            <span class="slot-index">02 &mdash; Unannounced</span>
+            <span class="slot-index solo">02 &mdash; Unannounced</span>
             <div class="skeleton" aria-hidden="true">
               <i></i><i></i><i></i>
             </div>
@@ -418,8 +453,8 @@
           <span style="font-size:13px;font-weight:400;">&copy; 2026 Thresh Labs LLC</span>
         </div>
         <div class="footer-links">
-          <a href="/terms">Terms</a>
-          <a href="/privacy">Privacy</a>
+          <a href="/terms.html">Terms</a>
+          <a href="/privacy.html">Privacy</a>
         </div>
       </div>
       <address class="footer-addr">231 S Bemiston Ave Ste 850 PMB 897716, Saint Louis, MO 63105</address>
