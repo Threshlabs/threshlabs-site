@@ -1,89 +1,512 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>Terms of Service — Thresh Labs</title>
-<meta name="description" content="Terms of Service for Thresh Labs LLC." />
-<link rel="stylesheet" href="legal.css" />
+<meta name="description" content="Terms of Service for the Thresh Labs website and the commitments that apply across every Thresh Labs product." />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<meta name="theme-color" content="#0F1B1A" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+/* Thresh Labs legal pages (terms.html, privacy.html).
+   Same tokens as index.html so the site reads as one piece.
+   Coral is deliberately absent — in-app only. */
+
+:root {
+  --ink: #0F1B1A;
+  --surface: #16211F;
+  --paper: #F6F4EE;
+  --teal: #0D9488;
+  --amber: #F59E0B;
+  --line: rgba(246, 244, 238, 0.11);
+  --line-strong: rgba(246, 244, 238, 0.2);
+
+  --display: "Fraunces", Georgia, serif;
+  --body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+*, *::before, *::after { box-sizing: inherit; }
+
+html { scroll-padding-top: env(safe-area-inset-top, 0px); -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background-color: var(--ink);
+  color: var(--paper);
+  font-family: var(--body);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Side padding is set explicitly (never via a padding shorthand) so nothing
+   below can zero it out — the bug that broke the homepage on mobile. */
+.wrap {
+  max-width: 760px;
+  margin: 0 auto;
+  padding-left: max(24px, env(safe-area-inset-left, 0px));
+  padding-right: max(24px, env(safe-area-inset-right, 0px));
+}
+
+/* ---------- masthead ---------- */
+.masthead { padding-top: 32px; }
+.mark-lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--paper);
+  text-decoration: none;
+}
+.mark-lockup span { font-size: 20px; font-weight: 500; letter-spacing: -0.01em; transition: color 150ms ease; }
+.mark-lockup:hover span { color: var(--teal); }
+
+/* ---------- document head ---------- */
+.doc-head { padding-top: 64px; padding-bottom: 28px; }
+
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(246, 244, 238, 0.45);
+  margin: 0;
+}
+
+h1 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(34px, 6vw, 46px);
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  margin: 14px 0 18px;
+}
+
+.doc-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: rgba(246, 244, 238, 0.55);
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 5px 11px;
+  border-radius: 999px;
+  border: 1px solid var(--line-strong);
+  color: rgba(246, 244, 238, 0.7);
+}
+.pill::before {
+  content: "";
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--amber);
+}
+
+/* ---------- Terms / Privacy switcher ---------- */
+.doc-nav {
+  display: flex;
+  gap: 22px;
+  border-bottom: 1px solid var(--line);
+}
+.doc-nav a {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(246, 244, 238, 0.5);
+  text-decoration: none;
+  padding: 12px 0;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: color 150ms ease;
+}
+.doc-nav a:hover { color: var(--paper); }
+.doc-nav a[aria-current="page"] { color: var(--paper); border-bottom-color: var(--teal); }
+
+/* ---------- document body ---------- */
+.doc { padding-bottom: 72px; }
+
+.lede {
+  font-size: 18px;
+  line-height: 1.65;
+  color: rgba(246, 244, 238, 0.84);
+  margin: 32px 0 4px;
+  max-width: 62ch;
+}
+
+.doc section { padding-top: 38px; }
+
+.doc h2 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  margin: 0 0 12px;
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+}
+.doc h2 .num {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--teal);
+  flex: none;
+}
+
+.doc p, .doc li {
+  font-size: 16.5px;
+  line-height: 1.72;
+  color: rgba(246, 244, 238, 0.78);
+  max-width: 66ch;
+}
+.doc p { margin: 0 0 14px; }
+.doc ul { margin: 0 0 14px; padding-left: 20px; }
+.doc li { margin-bottom: 8px; }
+.doc li::marker { color: var(--teal); }
+.doc strong { color: var(--paper); font-weight: 500; }
+
+.doc a {
+  color: var(--paper);
+  text-decoration: underline;
+  text-decoration-color: rgba(13, 148, 136, 0.7);
+  text-underline-offset: 3px;
+}
+.doc a:hover { color: var(--teal); }
+
+/* All-caps disclaimer paragraphs: a touch smaller so they stay readable. */
+.doc p.caps { font-size: 14.5px; letter-spacing: 0.01em; line-height: 1.75; }
+
+/* ---------- product list ---------- */
+.doc ul.product-list {
+  list-style: none;
+  padding: 0;
+  margin: 6px 0 16px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+  max-width: 66ch;
+}
+.doc ul.product-list li {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px 20px;
+  padding: 16px 18px;
+  margin: 0;
+  max-width: none;
+}
+.doc ul.product-list li + li { border-top: 1px solid var(--line); }
+.product-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--paper);
+  font-weight: 500;
+}
+.product-name sup { font-size: 0.6em; font-weight: 400; opacity: 0.65; }
+.product-links { display: flex; flex-wrap: wrap; gap: 16px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.04em; }
+.doc .product-links a { color: var(--teal); text-decoration: none; }
+.doc .product-links a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+.address { font-style: normal; color: rgba(246, 244, 238, 0.6); font-size: 15.5px; line-height: 1.7; }
+
+/* ---------- footer (matches index.html) ---------- */
+footer {
+  border-top: 1px solid var(--line);
+  padding-top: 34px;
+  padding-bottom: 48px;
+  font-size: 13px;
+  color: rgba(246, 244, 238, 0.45);
+}
+.footer-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+.footer-row .mark-lockup { gap: 10px; color: inherit; }
+.footer-row .mark-lockup span { font-size: 13px; font-weight: 400; }
+.footer-links { display: flex; gap: 18px; }
+.footer-links a { color: inherit; text-decoration: none; }
+.footer-links a:hover { color: var(--paper); }
+.footer-addr { margin: 14px 0 0; font-style: normal; }
+
+/* ---------- small screens ---------- */
+@media (max-width: 640px) {
+  .doc-head { padding-top: 44px; padding-bottom: 22px; }
+  .lede { font-size: 17px; margin-top: 26px; }
+  .doc section { padding-top: 32px; }
+  .doc h2 { font-size: 21px; flex-direction: column; gap: 4px; }
+  .doc p, .doc li { font-size: 16px; }
+  .doc ul.product-list li { padding: 14px 16px; }
+}
+
+/* ---------- print: legal pages get printed ---------- */
+@media print {
+  body { background: #fff; color: #111; font-size: 12pt; }
+  .doc-nav, footer .footer-links { display: none; }
+  h1, .doc h2, .doc strong, .product-name, .mark-lockup, .mark-lockup span { color: #111; }
+  .doc p, .doc li, .lede, .address, .doc-meta, .eyebrow, footer { color: #333; }
+  .doc a { color: #111; }
+  .doc ul.product-list { background: none; border-color: #ccc; }
+  .doc ul.product-list li + li { border-color: #ccc; }
+  .pill { border-color: #999; color: #333; }
+  .doc section { break-inside: avoid-page; }
+}
+
+</style>
 </head>
 <body>
-  <main class="legal-page">
-    <header class="legal-header">
-      <a class="legal-home" href="/">&#9670; Thresh Labs</a>
-    </header>
 
-    <article class="legal-body">
-      <h1>Terms of Service</h1>
-      <p class="legal-updated">Last updated: August 16, 2026</p>
+  <div class="wrap masthead">
+    <a class="mark-lockup" href="/" aria-label="Thresh Labs home">
+      <svg width="34" height="34" viewBox="0 0 380 380" aria-hidden="true">
+        <line x1="105" y1="70" x2="105" y2="310" stroke="#0D9488" stroke-width="40" stroke-linecap="round"/>
+        <line x1="275" y1="120" x2="275" y2="310" stroke="#0D9488" stroke-width="40" stroke-linecap="round"/>
+        <circle cx="190" cy="175" r="38" fill="#F6F4EE"/>
+      </svg>
+      <span>Thresh Labs</span>
+    </a>
+  </div>
 
-      <h2>About these terms</h2>
+  <header class="wrap doc-head">
+    <p class="eyebrow">Legal</p>
+    <h1>Terms of Service</h1>
+    <div class="doc-meta">
+      <span>Effective September 22, 2026</span>
+      <span class="pill">Draft &mdash; pending attorney review</span>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <nav class="doc-nav" aria-label="Legal documents">
+      <a href="/terms.html" aria-current="page">Terms of Service</a>
+      <a href="/privacy.html">Privacy Policy</a>
+    </nav>
+  </div>
+
+  <main class="wrap doc">
+    <p class="lede">
+      These terms cover the Thresh Labs website and set the ground rules that apply
+      to every product Thresh Labs makes. Each product also has its own terms, which
+      go into the details specific to it.
+    </p>
+
+    <section id="who-we-are">
+      <h2><span class="num">01</span>Who we are</h2>
       <p>
-        These terms govern your use of this website, which is operated by Thresh Labs LLC, a
-        Missouri limited liability company. By using this site, you agree to the terms
-        described here.
+        Thresh Labs LLC (&ldquo;Thresh Labs,&rdquo; &ldquo;we,&rdquo; &ldquo;us,&rdquo;
+        or &ldquo;our&rdquo;) is a Missouri limited liability company that designs and
+        builds consumer software. By using this website or any Thresh Labs product,
+        you agree to these terms. If you don&rsquo;t agree, please don&rsquo;t use them.
       </p>
+    </section>
 
-      <h2>This website</h2>
+    <section id="product-terms">
+      <h2><span class="num">02</span>How these terms fit with product terms</h2>
       <p>
-        This site is provided for general company information. Its contents are offered as-is,
-        without warranties of any kind, and may change at any time without notice. We make no
-        guarantee that the site will be available uninterrupted or error-free.
+        Every Thresh Labs product has its own Terms of Service and Privacy Policy,
+        which are presented to you before you create an account. Those product terms
+        cover the specifics &mdash; accounts, fees, how the product handles your
+        information, and so on. The terms on this page apply across all of them.
       </p>
-
-      <h2>No financial advice</h2>
       <p>
-        Nothing on this website is financial, investment, tax, or legal advice. Information
-        presented here is general in nature and should not be relied upon for any individual
-        decision. Consult a qualified professional for advice specific to your situation.
+        If a product&rsquo;s terms conflict with these, the product&rsquo;s terms
+        govern your use of that product.
       </p>
+    </section>
 
-      <h2>Intellectual property</h2>
+    <section id="products">
+      <h2><span class="num">03</span>Our products</h2>
+      <ul class="product-list">
+        <li>
+          <span class="product-name">
+            <svg width="22" height="22" viewBox="0 0 380 380" aria-hidden="true">
+              <polyline points="55,265 190,265 190,140 300,140" fill="none" stroke="#0D9488" stroke-width="40" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="255" cy="74" r="46" fill="#F59E0B"/>
+            </svg>
+            Thresh Paycheck<sup>&trade;</sup>
+          </span>
+          <span class="product-links">
+            <a href="https://threshpaycheck.com/legal/terms">Terms of Service</a>
+            <a href="https://threshpaycheck.com/legal/privacy">Privacy Policy</a>
+          </span>
+        </li>
+      </ul>
       <p>
-        The Thresh Labs name, logo, and the content of this site are the property of Thresh
-        Labs LLC. Nothing on this site grants any license to use our marks or content without
-        our prior written permission.
+        When we launch a new product, we&rsquo;ll add it here along with its terms
+        before it becomes available to the public.
       </p>
+    </section>
 
-      <h2>Our products</h2>
+    <section id="what-we-are">
+      <h2><span class="num">04</span>What our products are &mdash; and aren&rsquo;t</h2>
       <p>
-        Our software products are in active development and are not yet generally available.
-        Complete product terms &mdash; covering accounts, acceptable use, subscriptions and
-        billing, cancellation, disclaimers, and limitation of liability &mdash; will be
-        published here before any product is made available to the public, and will be
-        presented to users at signup. These website terms do not govern the use of any
-        Thresh Labs product.
+        Our products are software tools. They work from information you choose to
+        enter, and the figures they show are only as accurate as that information.
       </p>
-
-      <h2>Governing law</h2>
       <p>
-        These terms are governed by the laws of the State of Missouri, without regard to its
-        conflict of law provisions.
+        Thresh Labs is a software company, not a financial institution. We are not a
+        bank, lender, broker, investment adviser, tax adviser, or law firm. Our
+        products do not move, hold, or transmit your money.
       </p>
-
-      <h2>Changes to these terms</h2>
       <p>
-        We may revise these terms as our products develop. The &ldquo;last updated&rdquo; date
-        above reflects the most recent revision.
+        Nothing on this website or in any Thresh Labs product is financial,
+        investment, tax, or legal advice, and using them does not create an advisory
+        or fiduciary relationship between you and Thresh Labs. Decisions about your
+        money are yours to make.
       </p>
+    </section>
 
-      <h2>Contact</h2>
+    <section id="this-website">
+      <h2><span class="num">05</span>This website</h2>
+      <p>
+        This site provides general information about Thresh Labs and our products.
+        Its contents may change at any time without notice, and we don&rsquo;t
+        guarantee it will be available without interruption or free of errors.
+      </p>
+    </section>
+
+    <section id="eligibility">
+      <h2><span class="num">06</span>Eligibility</h2>
+      <p>
+        Our products are intended for adults. You must be at least 18 years old and
+        able to form a binding contract to create an account with any Thresh Labs
+        product.
+      </p>
+    </section>
+
+    <section id="acceptable-use">
+      <h2><span class="num">07</span>Acceptable use</h2>
+      <p>
+        Whether you&rsquo;re using this website or one of our products, you agree not
+        to: (a) use them for any unlawful purpose; (b) attempt to gain unauthorized
+        access to our systems or anyone else&rsquo;s account; (c) interfere with or
+        disrupt them, including by introducing viruses or other harmful code; (d)
+        reverse engineer or decompile them, except where the law allows; or (e)
+        access them by automated means without our prior written permission.
+      </p>
+    </section>
+
+    <section id="intellectual-property">
+      <h2><span class="num">08</span>Intellectual property</h2>
+      <p>
+        &ldquo;Thresh,&rdquo; &ldquo;Thresh Labs,&rdquo; &ldquo;Thresh Paycheck,&rdquo;
+        the Thresh Labs and Thresh Paycheck logos, and related marks are trademarks
+        of Thresh Labs LLC. The content and design of this website and our products,
+        other than information you enter into them, are owned by Thresh Labs or its
+        licensors. Nothing here grants you a license to use our marks or content
+        without our prior written permission.
+      </p>
+    </section>
+
+    <section id="links">
+      <h2><span class="num">09</span>Links to other sites</h2>
+      <p>
+        This website may link to sites we don&rsquo;t operate. We aren&rsquo;t
+        responsible for their content or practices, and your use of them is subject
+        to their own terms.
+      </p>
+    </section>
+
+    <section id="disclaimers">
+      <h2><span class="num">10</span>Disclaimers</h2>
+      <p class="caps">
+        THIS WEBSITE IS PROVIDED &ldquo;AS IS&rdquo; AND &ldquo;AS AVAILABLE,&rdquo;
+        WITHOUT WARRANTIES OF ANY KIND, WHETHER EXPRESS OR IMPLIED, INCLUDING
+        WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+        NON-INFRINGEMENT.
+      </p>
+      <p>Disclaimers for each product are set out in that product&rsquo;s own terms.</p>
+    </section>
+
+    <section id="liability">
+      <h2><span class="num">11</span>Limitation of liability</h2>
+      <p class="caps">
+        TO THE MAXIMUM EXTENT PERMITTED BY LAW, THRESH LABS LLC AND ITS OWNERS,
+        OFFICERS, AND SERVICE PROVIDERS WILL NOT BE LIABLE FOR ANY INDIRECT,
+        INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS OF
+        PROFITS, DATA, OR FINANCIAL LOSS, ARISING FROM YOUR USE OF OR INABILITY TO
+        USE THIS WEBSITE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+      </p>
+      <p>Limitation of liability for each product is set out in that product&rsquo;s own terms.</p>
+    </section>
+
+    <section id="governing-law">
+      <h2><span class="num">12</span>Governing law</h2>
+      <p>
+        These terms are governed by the laws of the State of Missouri, without regard
+        to its conflict-of-laws principles. Any dispute arising from these terms or
+        this website is subject to the exclusive jurisdiction of the state and
+        federal courts located in Missouri.
+      </p>
+    </section>
+
+    <section id="changes">
+      <h2><span class="num">13</span>Changes to these terms</h2>
+      <p>
+        We may update these terms as our company and products grow. The effective
+        date at the top of this page shows when they last changed. Changes to a
+        product&rsquo;s own terms are handled as that product&rsquo;s terms describe.
+      </p>
+    </section>
+
+    <section id="contact">
+      <h2><span class="num">14</span>Contact</h2>
       <p>
         Questions about these terms can be sent to
         <a href="mailto:legal@threshlabs.com">legal@threshlabs.com</a>.
       </p>
-      <p class="legal-entity">
-        Thresh Labs LLC &middot; Missouri, United States
-      </p>
-    </article>
-
-    <footer class="legal-footer">
-      <span>&copy; 2026 Thresh Labs LLC. A Missouri limited liability company.</span>
-      <nav>
-        <a href="/privacy.html">Privacy Policy</a>
-        <a href="/terms.html">Terms of Service</a>
-      </nav>
-    </footer>
+      <address class="address">
+        Thresh Labs LLC<br />
+        231 S Bemiston Ave Ste 850 PMB 897716<br />
+        Saint Louis, MO 63105
+      </address>
+    </section>
   </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-row">
+        <a class="mark-lockup" href="/" aria-label="Thresh Labs home">
+          <svg width="18" height="18" viewBox="0 0 380 380" aria-hidden="true">
+            <line x1="105" y1="70" x2="105" y2="310" stroke="#0D9488" stroke-width="40" stroke-linecap="round"/>
+            <line x1="275" y1="120" x2="275" y2="310" stroke="#0D9488" stroke-width="40" stroke-linecap="round"/>
+            <circle cx="190" cy="175" r="38" fill="#F6F4EE"/>
+          </svg>
+          <span>&copy; 2026 Thresh Labs LLC</span>
+        </a>
+        <div class="footer-links">
+          <a href="/terms.html">Terms</a>
+          <a href="/privacy.html">Privacy</a>
+        </div>
+      </div>
+      <address class="footer-addr">231 S Bemiston Ave Ste 850 PMB 897716, Saint Louis, MO 63105</address>
+    </div>
+  </footer>
+
 </body>
 </html>
